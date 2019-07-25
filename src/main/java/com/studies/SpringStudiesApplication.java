@@ -18,11 +18,11 @@ public class SpringStudiesApplication {
 		
 		ProduitRepository pr = ctx.getBean(ProduitRepository.class);
 		
-		String[] marque = {"Dell","HP","Sony","Tochiba","IBM","Nokia"};
-		String[] produit= {"Ordinateur","Laptop","Ecrant","Imprimante","Telephone portable","Disk dure"};
+		String[] marque = {"Dell","HP","Sony","Tochiba","IBM","Nokia","Samsung","Brandt","Condor","Iris","Geant"};
+		String[] produit= {"Ordinateur","Laptop","Ecrant","Imprimante","Telephone portable","Disk dure","Téléviseur", "Climatiseur", "Frigo", "Téléphone", "Fax"};
 		
 		
-		for(int i = 0; i<5; i++) pr.save(new Produit(produit[ (int)(Math.random() * 5)]+" "+marque[ (int)(Math.random() * 5)],(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
+		for(int i = 0; i<5; i++) pr.save(new Produit(produit[ (int)(Math.random() * 11)]+" "+marque[ (int)(Math.random() * 11)],(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
 		
 		List<Produit> lstPrd = pr.findAll();
 		for(Produit prd:lstPrd) {
