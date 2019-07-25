@@ -1,5 +1,6 @@
 package com.studies;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.boot.SpringApplication;
@@ -17,15 +18,16 @@ public class SpringStudiesApplication {
 		
 		ProduitRepository pr = ctx.getBean(ProduitRepository.class);
 		
+		String[] marque = {"Dell","HP","Sony","Tochiba","IBM","Nokia"};
+		String[] produit= {"Ordinateur","Laptop","Ecrant","Imprimante","Telephone portable","Disk dure"};
 		
 		
-		pr.save(new Produit("Pc portable",(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
-		pr.save(new Produit("Imprimante HP",(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
-		pr.save(new Produit("Huawei Modem",(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
-		pr.save(new Produit("Huawei Y6",(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
+		for(int i = 0; i<5; i++) pr.save(new Produit(produit[ (int)(Math.random() * 5)]+" "+marque[ (int)(Math.random() * 5)],(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
 		
-		
-		
+		List<Produit> lstPrd = pr.findAll();
+		for(Produit prd:lstPrd) {
+			System.out.println(prd.getDesignation());
+		}
 	}
 
 }
