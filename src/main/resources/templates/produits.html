@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
 <head>
 <meta charset="utf-8" />
 <title>My First Page Spring</title>
@@ -14,7 +16,7 @@
 
 </head>
 <body>
-
+<div layout:fragment="content">
 <div class="container">
   <form th:action="@{index}" method="get">
   	<label>Chercher:</label>
@@ -42,7 +44,8 @@
   <td th:text="${p.designation}"></td>
   <td th:text="${p.prix}"></td>
   <td th:text="${p.qte}"></td>
-  <td><a th:href="@{delete(id=${p.id} ,page=${pageActuel} ,size=${size}, motCle=${mc})}">Delete</a></td>
+  <td><a th:href="@{update(id=${p.id})}">Edit</a></td> 
+  <td><a onclick="return confirm('Etes vous sûr ?!')" th:href="@{delete(id=${p.id} ,page=${pageActuel} ,size=${size}, motCle=${mc})}">Delete</a></td>
 </tr>
 </tbody>
 </table>
@@ -56,6 +59,6 @@
 </ul>
 </div>
 
-
+</div>
 </body>
 </html>

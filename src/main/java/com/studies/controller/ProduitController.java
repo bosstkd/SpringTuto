@@ -2,11 +2,14 @@ package com.studies.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -89,5 +92,33 @@ public class ProduitController {
 		model.addAttribute("mc",mc);
 		return "redirect:/index?page="+p+"&size="+s+"&motCle="+mc;
 	}
+	
+	
+	@RequestMapping(value = "/insert", method =RequestMethod.GET)
+	public String formProduit(Model model) {
+		
+		model.addAttribute("produit", new Produit());
+		
+		return "FormProduit";
+	}
+	
+	@RequestMapping(value = "/save", method =RequestMethod.POST)
+	public String insertion(@Valid Produit produit, BindingResult bindingResult) 
+	{
+		if(bindingResult.hasErrors())
+			return "FormProduit";
+		
+		pr.save(produit);  
+		return "Confirmation";
+	}
+	
+	@RequestMapping(value = "/update", method =RequestMethod.GET)
+	public String update(Model model, Long id) 
+	{
+		Produit p = pr.findOne(id);
+		model.addAttribute("produit", p);
+		return "EditProduit";
+	}
+	
 	
 }

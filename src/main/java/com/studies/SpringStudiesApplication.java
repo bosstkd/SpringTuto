@@ -22,7 +22,7 @@ public class SpringStudiesApplication {
 		String[] produit= {"Ordinateur","Laptop","Ecrant","Imprimante","Telephone portable","Disk dure","Téléviseur", "Climatiseur", "Frigo", "Téléphone", "Fax"};
 		
 		
-		for(int i = 0; i<5; i++) pr.save(new Produit(produit[ (int)(Math.random() * 11)]+" "+marque[ (int)(Math.random() * 11)],(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
+	//	for(int i = 0; i<5; i++) pr.save(new Produit(produit[ (int)(Math.random() * 11)]+" "+marque[ (int)(Math.random() * 11)],(int) (Math.random() * 74020 + 7500), (int)(Math.random() * 50 + 1)));
 		
 		List<Produit> lstPrd = pr.findAll();
 		for(Produit prd:lstPrd) {
