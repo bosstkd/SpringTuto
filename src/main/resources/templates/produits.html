@@ -15,9 +15,18 @@
 </head>
 <body>
 
-<h3>Table des produits</h3>
+<div class="container">
+  <form th:action="@{index}" method="get">
+  	<label>Chercher:</label>
+  	<input type="text" name="motCle" th:value="${mc}" />
+  	<button class="btn btn-primary">Chercher</button>
+  	 
+  </form>
+</div>
 
-<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+<div class="container">
+<h3>Table des produits</h3>
+<table id="dtBasicExample" class="table" cellspacing="0" width="100%">
  <thead>
  <tr>
   <th>ID</th>
@@ -33,13 +42,19 @@
   <td th:text="${p.designation}"></td>
   <td th:text="${p.prix}"></td>
   <td th:text="${p.qte}"></td>
+  <td><a th:href="@{delete(id=${p.id} ,page=${pageActuel} ,size=${size}, motCle=${mc})}">Delete</a></td>
 </tr>
 </tbody>
-
-
 </table>
+</div>
 
-
+<div class="container">
+<ul class="nav nav-pills">
+  <li th:class="${pageActuel} == ${status.index}?'active':''" th:each="pg, status:${nbPages}" >
+  	<a th:href="@{index(page=${status.index}, size=${size}, motCle=${mc})}" th:text="${status.index}"></a>
+  </li>
+</ul>
+</div>
 
 
 </body>
