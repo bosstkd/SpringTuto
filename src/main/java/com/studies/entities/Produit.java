@@ -1,5 +1,7 @@
 package com.studies.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,8 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Produit {
+public class Produit implements Serializable{
 
+	
 	
 	@Id @GeneratedValue
 	private Long id;

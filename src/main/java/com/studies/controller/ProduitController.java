@@ -25,7 +25,7 @@ public class ProduitController {
 	private ProduitRepository pr;
 	/* 
 	 //Solution 1
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/user/index")
 	public String index(Model model) {
 		
 		List<Produit> prdList = pr.findAll();
@@ -37,7 +37,7 @@ public class ProduitController {
 	*/
 	/*
 	//Solution 2
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/user/index")
 	public String index(Model model,
 						@RequestParam (name = "page", defaultValue = "0") int p,
 						@RequestParam (name = "size", defaultValue = "5") int s) 
@@ -54,7 +54,7 @@ public class ProduitController {
 	}
 	*/
 	
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/user/index")
 	public String index(Model model,
 						@RequestParam (name = "page", defaultValue = "0") int p,
 						@RequestParam (name = "size", defaultValue = "5") int s,
@@ -72,7 +72,7 @@ public class ProduitController {
 		return "produits";
 	}
 	
-	@RequestMapping(value="/delete", method =RequestMethod.GET)
+	@RequestMapping(value="/admin/delete", method =RequestMethod.GET)
 	public String delete(Model model,
 						@RequestParam (name = "id", defaultValue = "0") Long id,
 						@RequestParam (name = "page", defaultValue = "0") int p,
@@ -90,11 +90,11 @@ public class ProduitController {
 		model.addAttribute("size",s);
 		//model.addAttribute("nbPages",nbPages);
 		model.addAttribute("mc",mc);
-		return "redirect:/index?page="+p+"&size="+s+"&motCle="+mc;
+		return "redirect:/user/index?page="+p+"&size="+s+"&motCle="+mc;
 	}
 	
 	
-	@RequestMapping(value = "/insert", method =RequestMethod.GET)
+	@RequestMapping(value = "/admin/insert", method =RequestMethod.GET)
 	public String formProduit(Model model) {
 		
 		model.addAttribute("produit", new Produit());
@@ -102,7 +102,7 @@ public class ProduitController {
 		return "FormProduit";
 	}
 	
-	@RequestMapping(value = "/save", method =RequestMethod.POST)
+	@RequestMapping(value = "/admin/save", method =RequestMethod.POST)
 	public String insertion(@Valid Produit produit, BindingResult bindingResult) 
 	{
 		if(bindingResult.hasErrors())
@@ -112,12 +112,32 @@ public class ProduitController {
 		return "Confirmation";
 	}
 	
-	@RequestMapping(value = "/update", method =RequestMethod.GET)
+	@RequestMapping(value = "/admin/update", method =RequestMethod.GET)
 	public String update(Model model, Long id) 
 	{
 		Produit p = pr.findOne(id);
 		model.addAttribute("produit", p);
 		return "EditProduit";
+	}
+	
+	//page par defaut
+	@RequestMapping(value="/")
+	public String home() {
+		return "redirect:/user/index";
+	}
+	
+	@RequestMapping(value = "/nonautoriser")
+	public String nonAutoriser() 
+	{
+		
+		return "pageNonAutoriser";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login() 
+	{
+		
+		return "login";
 	}
 	
 	
