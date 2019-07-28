@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
 <head>
 <meta charset="utf-8" />
-<title>Gestion produit</title>
+<title>My First Page Spring</title>
 
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
 
 <!-- jQuery library -->
@@ -15,25 +17,50 @@
 
 </head>
 <body>
-   <h3>Test Spring</h3>
-  <table class="table">
-	   <thead>
-			     <tr>
-			       <th>ID</th>
-			       <th>Designation</th>
-			       <th>Prix</th>
-			       <th>Quantité</th>
-			     </tr>
-	   </thead>  
-	   
-	    <tbody>
-			     <tr th:each="p:${listProduit}">  
-			       <td th:text="${p.id}"></td>
-			       <td th:text="${p.designation}"></td>
-			       <td th:text="${p.prix}"></td>
-			       <td th:text="${p.qte}"></td>
-			     </tr>
-	    </tbody>
-  </table>
+<div layout:fragment="content">
+<div class="container">
+  <form th:action="@{/user/index}" method="get">
+  	<label>Chercher:</label>
+  	<input type="text" name="motCle" th:value="${mc}" />
+  	<button class="btn btn-primary">Chercher</button>
+  	 
+  </form>
+</div>
+
+<div class="container">
+<h3>Table des produits</h3>
+<table id="dtBasicExample" class="table" cellspacing="0" width="100%">
+ <thead>
+ <tr>
+  <th>ID</th>
+  <th>Designation</th>
+  <th>Prix</th>
+  <th>Qte</th>
+ </tr>   
+</thead>
+
+<tbody>
+<tr th:each="p:${listProduit}">
+  <td th:text="${p.id}"></td>
+  <td th:text="${p.designation}"></td>
+  <td th:text="${p.prix}"></td>
+  <td th:text="${p.qte}"></td>
+  <td><a th:href="@{/admin/update(id=${p.id})}">Edit</a></td> 
+  <td><a onclick="return confirm('Etes vous sûr ?!')" th:href="@{/admin/delete(id=${p.id} ,page=${pageActuel} ,size=${size}, motCle=${mc})}">Delete</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="container">
+<ul class="nav nav-pills">
+  <li th:class="${pageActuel} == ${status.index}?'active':''" th:each="pg, status:${nbPages}" >
+  	<a th:href="@{/user/index(page=${status.index}, size=${size}, motCle=${mc})}" th:text="${status.index}"></a>
+  </li>
+</ul>
+</div>
+
+</div>
+>>>>>>> branch 'master' of https://github.com/bosstkd/SpringTuto.git
 </body>
 </html>
