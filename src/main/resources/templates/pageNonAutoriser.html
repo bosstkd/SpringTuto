@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>My First Page Spring</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+ <div layout:fragment="content">
+ <div class="container" >
+  
+   <div class="panel panel-default">
+       <div class="panel-heading">Accès interdit</div>
+	       <div class="panel-body" style="color:red">
+	          <h3>Vous n'etes pas autorisé à accèder à cette resource</h3>
+	       </div>
+   </div>
+ 
+ </div>
+</div>
+
+</body>
+</html>

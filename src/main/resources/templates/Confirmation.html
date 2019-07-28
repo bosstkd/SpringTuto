@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>My First Page Spring</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+ <div layout:fragment="content">
+ <div class="container" >
+  
+   <div class="panel panel-default">
+       <div class="panel-heading">Confirmation</div>
+	       <div class="panel-body">
+	         <div class="form-group">
+	         	<label>ID:</label>
+	         	<label th:text="${produit.id}"></label>
+	       	 </div>
+	       	 <div class="form-group">
+	         	<label>Désignation:</label>
+	         	<label th:text="${produit.designation}"></label>
+	       	 </div>
+	       	 <div class="form-group">
+	         	<label>Prix:</label>
+	         	<label th:text="${produit.prix}"></label>
+	       	 </div>
+	       	 <div class="form-group">
+	         	<label>Quantité:</label>
+	         	<label th:text="${produit.qte}"></label>
+	       	 </div>
+	       </div>
+   </div>
+ 
+ </div>
+</div>
+
+</body>
+</html>
